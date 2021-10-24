@@ -28,27 +28,23 @@ public class Controller {
 	//Menu
 	//vaihtaa scenen nappulan mukaisesti
 	public void switchToScan(ActionEvent event) throws IOException {
-		Parent viewParent = FXMLLoader.load(getClass().getResource("ScanScene.fxml"));
-		Scene viewScene = new Scene(viewParent);
-		
-		//gets Stage information
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
-		window.setScene(viewScene);
-		window.show();
+		switchScene(event, 1);
 	}
 	public void switchToAdd(ActionEvent event) throws IOException {
-		Parent viewParent = FXMLLoader.load(getClass().getResource("AddScene.fxml"));
-		Scene viewScene = new Scene(viewParent);
-		
-		//gets Stage information
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
-		window.setScene(viewScene);
-		window.show();
+		switchScene(event, 2);
 	}
 	public void switchToHistory(ActionEvent event) throws IOException {
-		Parent viewParent = FXMLLoader.load(getClass().getResource("HistoryScene.fxml"));
+		switchScene(event, 3);
+	}
+	public void switchScene(ActionEvent event, int sceneNumber) throws IOException {
+		String scenePath = "";
+		switch (sceneNumber) {
+		case 1: scenePath = "ScanScene.fxml"; break;
+		case 2: scenePath = "AddScene.fxml"; break;
+		case 3: scenePath = "HistoryScene.fxml"; break;
+		default: scenePath = "ScanScene.fxml"; break;
+		}
+		Parent viewParent = FXMLLoader.load(getClass().getResource(scenePath));
 		Scene viewScene = new Scene(viewParent);
 		
 		//gets Stage information
