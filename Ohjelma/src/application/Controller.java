@@ -43,8 +43,9 @@ public class Controller {
     private void loadHistory() {
         lista.add("testi rivi 1");
         lista.add("testi rivi 2");
+        lista.add("test3");
         historyList.setItems(lista);
-        historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        //historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE); //voi poistaa?
     }
 	//Menu
 	//vaihtaa scenen nappulan mukaisesti
