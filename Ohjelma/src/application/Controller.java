@@ -1,19 +1,35 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 
 public class Controller {
-
+	
+	private final ObservableList<String> lista = FXCollections.observableArrayList();
+	
+	@FXML
+	private ListView<String> historyList = new ListView<String>(lista);
+	
 	public Controller() {
-		// TODO Auto-generated constructor stub
 	}
+	
+	public void initialize() {
+        loadHistory();
+    }
+
 	//Scan
 	public void scan() {
 		System.out.println("skannaa...");
@@ -24,7 +40,12 @@ public class Controller {
 	}
 	
 	//History
-	
+    private void loadHistory() {
+        lista.add("testi rivi 1");
+        lista.add("testi rivi 2");
+        historyList.setItems(lista);
+        historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
 	//Menu
 	//vaihtaa scenen nappulan mukaisesti
 	public void switchToScan(ActionEvent event) throws IOException {
