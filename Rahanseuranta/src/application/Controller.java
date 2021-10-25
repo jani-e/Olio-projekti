@@ -38,12 +38,12 @@ public class Controller {
 	}
 	//Add
 	public void add() {
-		System.out.println("lisï¿½ï¿½...");
+		System.out.println("lisää...");
 	}
 	
 	//History
     private void loadHistory() { //testi2
-        lista.add("testi rivi 1"); //esko lisï¿½ï¿½ backendiin arraylist, jossa on tietokannan tulot ja menot
+        lista.add("testi rivi 1"); //esko lisää backendiin arraylist, jossa on tietokannan tulot ja menot
         lista.add("testi rivi 2");
         historyList.setItems(lista);
         historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
