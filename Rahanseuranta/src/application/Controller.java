@@ -42,7 +42,7 @@ public class Controller {
 	}
 	
 	//History
-    private void loadHistory() {
+    private void loadHistory() { //testi
         lista.add("testi rivi 1"); //esko lis‰‰ backendiin arraylist, jossa on tietokannan tulot ja menot
         lista.add("testi rivi 2");
         historyList.setItems(lista);
