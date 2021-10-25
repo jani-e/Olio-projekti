@@ -20,6 +20,8 @@ public class Controller {
 	
 	private final ObservableList<String> lista = FXCollections.observableArrayList();
 	
+	private BackEnd backend = new BackEnd();
+	
 	@FXML
 	private ListView<String> historyList = new ListView<String>(lista);
 	
@@ -28,7 +30,7 @@ public class Controller {
 	
 	public void initialize() {
         loadHistory();
-    }
+    } 
 
 	//Scan
 	public void scan() {
@@ -36,7 +38,7 @@ public class Controller {
 	}
 	//Add
 	public void add() {
-		System.out.println("lisää...");
+		System.out.println("lisï¿½ï¿½...");
 	}
 	
 	//History
