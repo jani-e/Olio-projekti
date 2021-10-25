@@ -43,7 +43,7 @@ public class Controller {
 	
 	//History
     private void loadHistory() {
-        lista.add("testi rivi 1");
+        lista.add("testi rivi 1"); //esko lis‰‰ backendiin arraylist, jossa on tietokannan tulot ja menot
         lista.add("testi rivi 2");
         lista.add("test3");
         historyList.setItems(lista);
