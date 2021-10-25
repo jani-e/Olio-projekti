@@ -1,0 +1,12 @@
+INDEX VERSION 1.131+C:\Users\Jani\OneDrive\Documents\GitHub\Java_Laurea\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+3413725848.index
+2615347354.index
+1449856204.index
+2367024782.index
+2406998805.index
+645523576.index
+2050314250.index
+3580789427.index
+3320486179.index
+1888783133.index
