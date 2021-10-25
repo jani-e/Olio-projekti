@@ -20,7 +20,7 @@ public class Controller {
 	
 	private final ObservableList<String> lista = FXCollections.observableArrayList();
 	
-	private BackEnd backend = new BackEnd();
+	private Backend backend = new Backend();
 	
 	@FXML
 	private ListView<String> historyList = new ListView<String>(lista);
@@ -38,12 +38,12 @@ public class Controller {
 	}
 	//Add
 	public void add() {
-		System.out.println("lisää...");
+		System.out.println("lisï¿½ï¿½...");
 	}
 	
 	//History
     private void loadHistory() { //testi2
-        lista.add("testi rivi 1"); //esko lisää backendiin arraylist, jossa on tietokannan tulot ja menot
+        lista.add("testi rivi 1"); //esko lisï¿½ï¿½ backendiin arraylist, jossa on tietokannan tulot ja menot
         lista.add("testi rivi 2");
         historyList.setItems(lista);
         historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
