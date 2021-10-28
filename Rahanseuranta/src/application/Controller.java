@@ -1,8 +1,9 @@
 package application;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Controller {
 	
@@ -33,8 +36,25 @@ public class Controller {
     }
 
 	//Scan
-	public void scan() {
-		System.out.println("skannaa...");
+	public void scan(ActionEvent event) {
+		Window window = ((Node) (event.getSource())).getScene().getWindow();
+	    FileChooser fileChooser = new FileChooser();
+	    File file = fileChooser.showOpenDialog(window);
+	    event.consume();
+	    lueTiedosto(file); //testimetodi
+	    //readPicture(file); tiedosto siirtyy backendiin
+	}
+	
+	public void lueTiedosto(File file) { //testi, kirjoittaa tiedoston konsoliin
+		try {
+			Scanner reader = new Scanner(file);
+		    while (reader.hasNextLine()) {
+		    	String data = reader.nextLine();
+		    	System.out.println(data);
+		    }
+		} catch (FileNotFoundException e) {
+			System.out.println(e);
+		}
 	}
 	//Add
 	public void add() {
