@@ -42,7 +42,7 @@ public class Controller {
 	    File file = fileChooser.showOpenDialog(window);
 	    event.consume();
 	    lueTiedosto(file); //testimetodi
-	    //readPicture(file); tiedosto siirtyy backendiin
+	    //backend.readPicture(file); //tiedosto siirtyy backendiin
 	}
 	
 	public void lueTiedosto(File file) { //testi, kirjoittaa tiedoston konsoliin
