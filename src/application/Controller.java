@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.collections.FXCollections;
@@ -20,10 +21,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class Controller {
-	
-	private final ObservableList<String> lista = FXCollections.observableArrayList();
+
+	private ObservableList<String> lista = FXCollections.observableArrayList(); //poistetaan backend työn jälkeen
 	
 	private Backend backend = new Backend();
+	//private ObservableList<String> lista = FXCollections.observableArrayList(backend.getHistoryList());
 	
 	@FXML
 	private ListView<String> historyList = new ListView<String>(lista);
@@ -63,7 +65,7 @@ public class Controller {
 	
 	//History
     private void loadHistory() { //testi2
-        lista.add("testi rivi 1"); //esko lisaa backendiin arraylist, jossa on tietokannan tulot ja menot
+        //lista.add("testi rivi 1"); //esko lisaa backendiin arraylist, jossa on tietokannan tulot ja menot
         lista.add("testi rivi 2");
         historyList.setItems(lista);
         historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
