@@ -1,6 +1,9 @@
 package application;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Backend {
 	
@@ -20,8 +23,16 @@ public class Backend {
 		return history;
 	}
 	
-	public void readPicture() {
-		
+	public void readPicture(File file) {
+		try {
+			Scanner reader = new Scanner(file);
+		    while (reader.hasNextLine()) {
+		    	String data = reader.nextLine();
+		    	System.out.println(data);
+		    }
+		} catch (FileNotFoundException e) {
+			System.out.println(e);
+		}
 	}
 	
 	public void addCustomItem() {
