@@ -39,6 +39,8 @@ public class Controller {
 	public void scan(ActionEvent event) {
 		Window window = ((Node) (event.getSource())).getScene().getWindow();
 		FileChooser fileChooser = new FileChooser();
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.tiff", "*.png", "*.bmp", "*.gif");
+		fileChooser.getExtensionFilters().add(extFilter);
 		File file = fileChooser.showOpenDialog(window);
 		event.consume();
 		backend.readPicture(file); // tiedosto siirtyy backendiin
