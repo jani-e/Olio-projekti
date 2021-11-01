@@ -22,10 +22,8 @@ import javafx.stage.Window;
 
 public class Controller {
 
-	private ObservableList<String> lista = FXCollections.observableArrayList(); //poistetaan backend työn jälkeen
-	
 	private Backend backend = new Backend();
-	//private ObservableList<String> lista = FXCollections.observableArrayList(backend.getHistoryList());
+	private ObservableList<String> lista = FXCollections.observableArrayList(backend.getHistoryList());
 	
 	@FXML
 	private ListView<String> historyList = new ListView<String>(lista);
@@ -64,9 +62,7 @@ public class Controller {
 	}
 	
 	//History
-    private void loadHistory() { //testi2
-        //lista.add("testi rivi 1"); //esko lisaa backendiin arraylist, jossa on tietokannan tulot ja menot
-        lista.add("testi rivi 2");
+    private void loadHistory() {      
         historyList.setItems(lista);
         historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
