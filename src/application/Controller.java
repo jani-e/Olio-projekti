@@ -15,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -62,6 +64,7 @@ public class Controller {
 
 	// Add
 	public void add() {
+		Alert errorAlert = new Alert(AlertType.ERROR);
 		LocalDate date = LocalDate.of(2000, 1, 1);
 		String name = "";
 		Double amount = 0.0;
@@ -71,32 +74,38 @@ public class Controller {
 		Boolean validAmount = false;
 		
 		if (valueDate.getValue() == null) {
-			System.out.println("invalid date"); //add gui prompt
 			validDate = false;
+			errorAlert.setHeaderText("Date is missing!");
+			errorAlert.setContentText("Please select a date.");
+			errorAlert.showAndWait();
 		} else {
 			date = valueDate.getValue(); //returns year-month-day ex. 2021-11-01
 			validDate = true;
 		}
 		
 		if (valueName.getText().equals("")) {
-			System.out.println("name is empty"); //add gui prompt
 			validName = false;
+			errorAlert.setHeaderText("Name is empty!");
+			errorAlert.setContentText("Please add a name.");
+			errorAlert.showAndWait();
 		} else {
 			name = valueName.getText();
 			validName = true;
 		}
 			
-		if (valueAmount.getText().equals("")) {
-			System.out.println("amount is empty"); //add gui prompt + allow numbers , . only
+		if (valueAmount.getText().equals("")) {//todo: allow numbers , . only 
 			validAmount = false;
+			errorAlert.setHeaderText("Amount error!");
+			errorAlert.setContentText("Valid input: 0.00");
+			errorAlert.showAndWait();
 		} else {
 			amount = Double.valueOf(valueAmount.getText());
 			validAmount = true;
 		}
 	
 		if (validDate && validName && validAmount) {
-			System.out.print("checks ok: ");
-			System.out.print(date + " " + name + " " + amount);
+			System.out.println("checks ok: ");
+			System.out.println(date + " " + name + " " + amount);
 			//backend.addCustomItem(date, name, amount);
 		} else {
 			System.out.println("checks failed");
