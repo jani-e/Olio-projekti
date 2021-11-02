@@ -69,7 +69,7 @@ public class SQLiteJDBC {
 	      stmt.close();
 	      c.close();
 	
-	   System.out.println("Operation done successfully");
+	   System.out.println("Operation done successfully.");
 	   
 	  } catch ( Exception e ) {
           System.err.println( e.getClass().getName() + ": " + e.getMessage() );
