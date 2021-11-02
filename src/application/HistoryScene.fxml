@@ -14,23 +14,41 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <Text layoutX="75.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date" />
-      <DatePicker fx:id="startDate" layoutX="156.0" layoutY="118.0" promptText="DD.MM.YYYY" />
-      <Text layoutX="75.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date" />
-      <DatePicker fx:id="endDate" layoutX="156.0" layoutY="161.0" promptText="DD.MM.YYYY" />
-      <Button fx:id="buttonFilter" layoutX="154.0" layoutY="210.0" mnemonicParsing="false" onAction="#filter" text="Filter" />
-      <HBox fx:id="menuHBox" layoutY="540.0" prefHeight="100.0" prefWidth="360.0">
+      <Text layoutX="29.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <DatePicker fx:id="startDate" editable="false" layoutX="130.0" layoutY="115.0" prefHeight="25.0" prefWidth="200.0" />
+      <Text layoutX="33.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <DatePicker fx:id="endDate" editable="false" layoutX="130.0" layoutY="155.0" prefHeight="25.0" prefWidth="200.0" />
+      <Button fx:id="buttonFilter" layoutX="210.0" layoutY="200.0" mnemonicParsing="false" onAction="#filter" prefHeight="25.0" prefWidth="120.0" text="Filter">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <HBox fx:id="menuHBox" layoutY="580.0" prefHeight="60.0" prefWidth="360.0">
          <children>
-            <Button fx:id="scanMenuButton" mnemonicParsing="false" onAction="#switchToScan" prefHeight="100.0" prefWidth="120.0" text="Scan Receipt" />
-            <Button fx:id="addMenuButton" mnemonicParsing="false" onAction="#switchToAdd" prefHeight="100.0" prefWidth="120.0" text="Add Item" />
-            <Button fx:id="historyMenuButton" mnemonicParsing="false" onAction="#switchToHistory" prefHeight="100.0" prefWidth="120.0" text="History" />
+            <Button fx:id="scanMenuButton" mnemonicParsing="false" onAction="#switchToScan" prefHeight="100.0" prefWidth="120.0" text="Scan Receipt">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="addMenuButton" mnemonicParsing="false" onAction="#switchToAdd" prefHeight="100.0" prefWidth="120.0" text="Add Item">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="historyMenuButton" mnemonicParsing="false" onAction="#switchToHistory" prefHeight="100.0" prefWidth="120.0" text="History">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
-      <Label layoutX="133.0" layoutY="38.0" text="History">
+      <Label layoutX="133.0" layoutY="40.0" text="History">
          <font>
             <Font size="30.0" />
          </font></Label>
-      <ScrollPane layoutX="30.0" layoutY="260.0" prefHeight="247.0" prefWidth="300.0">
+      <ScrollPane layoutX="30.0" layoutY="289.0" prefHeight="247.0" prefWidth="300.0">
          <content>
             <VBox prefHeight="245.0" prefWidth="298.0">
                <children>
