@@ -11,17 +11,17 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javafx17">
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/tessa">
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Tessa">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/sqlite">
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jdbc">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
