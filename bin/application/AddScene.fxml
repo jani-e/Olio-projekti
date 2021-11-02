@@ -2,26 +2,33 @@
 
 <?language JavaScript?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <TextField layoutX="106.0" layoutY="232.0" promptText="Item name" />
-      <TextField layoutX="106.0" layoutY="279.0" promptText="€" />
+      <DatePicker fx:id="valueDate" layoutX="106.0" layoutY="180.0" prefHeight="25.0" prefWidth="149.0" promptText="DD.MM.YYYY" />
+      <TextField fx:id="valueName" layoutX="106.0" layoutY="232.0" promptText="Name" />
+      <TextField fx:id="valueAmount" layoutX="106.0" layoutY="279.0" promptText="€" />
       <Button fx:id="addButton" layoutX="148.0" layoutY="338.0" mnemonicParsing="false" onAction="#add" text="Add item" />
-      <Text layoutX="106.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write item name here" />
-      <Text layoutX="106.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How many Euros?" />
-      <Label layoutX="155.0" layoutY="40.0" text="AddLabel" />
+      <Text layoutX="106.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="106.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" />
+      <Label layoutX="119.0" layoutY="38.0" text="Add Item">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
       <HBox fx:id="menuHBox" layoutY="540.0" prefHeight="100.0" prefWidth="360.0">
          <children>
             <Button fx:id="scanMenuButton" mnemonicParsing="false" onAction="#switchToScan" prefHeight="100.0" prefWidth="120.0" text="Scan Receipt" />
-            <Button fx:id="addMenuButton" mnemonicParsing="false" onAction="#switchToAdd" prefHeight="100.0" prefWidth="120.0" text="Add Purchase" />
+            <Button fx:id="addMenuButton" mnemonicParsing="false" onAction="#switchToAdd" prefHeight="100.0" prefWidth="120.0" text="Add Item" />
             <Button fx:id="historyMenuButton" mnemonicParsing="false" onAction="#switchToHistory" prefHeight="100.0" prefWidth="120.0" text="History" />
          </children>
       </HBox>
+      <Text layoutX="106.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
    </children>
 </AnchorPane>

@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,8 +15,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -27,6 +31,16 @@ public class Controller {
 
 	@FXML
 	private ListView<String> historyList = new ListView<String>(lista);
+	@FXML
+	private DatePicker valueDate;
+	@FXML
+	private TextField valueName;
+	@FXML
+	private TextField valueAmount;
+	@FXML
+	private DatePicker startDate;
+	@FXML
+	private DatePicker endDate;
 
 	public Controller() {
 	}
@@ -43,22 +57,66 @@ public class Controller {
 		fileChooser.getExtensionFilters().add(extFilter);
 		File file = fileChooser.showOpenDialog(window);
 		event.consume();
-		backend.readPicture(file); // tiedosto siirtyy backendiin
+		backend.readPicture(file); //backend receives file
 	}
 
 	// Add
 	public void add() {
-		System.out.println("lisaa...");
+		LocalDate date = LocalDate.of(2000, 1, 1);
+		String name = "";
+		Double amount = 0.0;
+		
+		Boolean dateok = false;
+		Boolean nameok = false;
+		Boolean amountok = false;
+		
+		if (valueDate.getValue() == null) {
+			System.out.println("invalid date"); //add gui prompt
+			dateok = false;
+		} else {
+			dateok = true;
+		}
+		
+		if (valueName.getText().equals("")) {
+			System.out.println("name is empty"); //add gui prompt
+			nameok = false;
+		} else {
+			nameok = true;
+		}
+			
+		if (valueAmount.getText().equals("")) {
+			System.out.println("amount is empty"); //add gui prompt + allow numbers , . only
+			amountok = false;
+		} else {
+			amountok = true;
+		}
+	
+		if (dateok && nameok && amountok) {
+			System.out.println("checks ok");
+
+			date = valueDate.getValue(); //returns year-month-day ex. 2021-11-01
+			name = valueName.getText();
+			amount = Double.valueOf(valueAmount.getText());
+			System.out.println(date + "\n" + name + "\n" + amount);
+			//backend.addCustomItem(date, name, amount);
+		} else {
+			System.out.println("checks failed");
+		}
 	}
 
 	// History
-	private void loadHistory() {
+	public void loadHistory() {
 		historyList.setItems(lista);
 		historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
+	public void filter() {
+		LocalDate start = startDate.getValue(); //LocalDate.of(2000, 1, 1);
+		LocalDate end = endDate.getValue(); //LocalDate.of(2000, 1, 1);
+		
+		System.out.println(start + " " + end);
+	}
 
 	// Menu
-	// vaihtaa scenen nappulan mukaisesti
 	public void switchToScan(ActionEvent event) throws IOException {
 		switchScene(event, 1);
 	}
@@ -89,10 +147,7 @@ public class Controller {
 		}
 		Parent viewParent = FXMLLoader.load(getClass().getResource(scenePath));
 		Scene viewScene = new Scene(viewParent);
-
-		// gets Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
 		window.setScene(viewScene);
 		window.show();
 	}
