@@ -66,38 +66,37 @@ public class Controller {
 		String name = "";
 		Double amount = 0.0;
 		
-		Boolean dateok = false;
-		Boolean nameok = false;
-		Boolean amountok = false;
+		Boolean validDate = false;
+		Boolean validName = false;
+		Boolean validAmount = false;
 		
 		if (valueDate.getValue() == null) {
 			System.out.println("invalid date"); //add gui prompt
-			dateok = false;
+			validDate = false;
 		} else {
-			dateok = true;
+			date = valueDate.getValue(); //returns year-month-day ex. 2021-11-01
+			validDate = true;
 		}
 		
 		if (valueName.getText().equals("")) {
 			System.out.println("name is empty"); //add gui prompt
-			nameok = false;
+			validName = false;
 		} else {
-			nameok = true;
+			name = valueName.getText();
+			validName = true;
 		}
 			
 		if (valueAmount.getText().equals("")) {
 			System.out.println("amount is empty"); //add gui prompt + allow numbers , . only
-			amountok = false;
+			validAmount = false;
 		} else {
-			amountok = true;
+			amount = Double.valueOf(valueAmount.getText());
+			validAmount = true;
 		}
 	
-		if (dateok && nameok && amountok) {
-			System.out.println("checks ok");
-
-			date = valueDate.getValue(); //returns year-month-day ex. 2021-11-01
-			name = valueName.getText();
-			amount = Double.valueOf(valueAmount.getText());
-			System.out.println(date + "\n" + name + "\n" + amount);
+		if (validDate && validName && validAmount) {
+			System.out.print("checks ok: ");
+			System.out.print(date + " " + name + " " + amount);
 			//backend.addCustomItem(date, name, amount);
 		} else {
 			System.out.println("checks failed");
