@@ -28,8 +28,8 @@ import javafx.stage.Window;
 
 public class Controller {
 
-	private Backend backend = new Backend();
-	private ObservableList<String> lista = FXCollections.observableArrayList(backend.getHistoryList());
+	private Backend backend;
+	private ObservableList<String> lista;
 
 	@FXML
 	private ListView<String> historyList = new ListView<String>(lista);
@@ -45,9 +45,12 @@ public class Controller {
 	private DatePicker endDate;
 
 	public Controller() {
+		backend = new Backend();
+		lista = FXCollections.observableArrayList(backend.getHistoryList());
 	}
 
 	public void initialize() {
+		System.out.println(backend);
 		loadHistory();
 	}
 

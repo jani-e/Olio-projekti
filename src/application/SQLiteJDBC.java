@@ -42,7 +42,7 @@ public class SQLiteJDBC {
 	   }
 	  	
 	      	      
-	  	public void insertQuery(String kysely) {
+	  	public void sqlQuery(String lisays) {
 	  		Connection c = null;
 	  	      Statement stmt = null;
 	  	      
@@ -53,7 +53,7 @@ public class SQLiteJDBC {
 	  	         System.out.println("Opened database successfully");
 
 	  	         stmt = c.createStatement();
-	  	         String sql = kysely; 							
+	  	         String sql = lisays; 							
 	  	         stmt.executeUpdate(sql);
 
 	  	         stmt.close();

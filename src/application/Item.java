@@ -15,12 +15,18 @@ public Item(String name, int amount, String transType) {
 
 	public String getName() {
 	
-		return null;
+		return this.name;
 	}
 
 	public int getAmount() {
 		
-		return 0;
+		return this.amount;
+	}
+
+
+	public String getTranstype() {
+		
+		return this.transType;
 	}
 
 }
