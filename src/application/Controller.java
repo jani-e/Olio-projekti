@@ -106,7 +106,7 @@ public class Controller {
 		if (validDate && validName && validAmount) {
 			System.out.println("checks ok: ");
 			System.out.println(date + " " + name + " " + amount);
-			//backend.addCustomItem(date, name, amount);
+			backend.addCustomItem(date, name, amount);
 		} else {
 			System.out.println("checks failed");
 		}
