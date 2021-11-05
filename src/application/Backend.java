@@ -12,17 +12,25 @@ public class Backend {
 	private DatabaseReader databaseReader;
 	private ArrayList<String> history; 
 	public Backend() {
-		receiptMaker = new ReceiptMaker();
-		databaseReader = new DatabaseReader();
-		history = new ArrayList<>();
+		this.receiptMaker = new ReceiptMaker();
+		this.databaseReader = new DatabaseReader();
+		//this.databaseReader.setupDatabase();
+		this.history = new ArrayList<>();
 		
 	}
 	
 	//CHANGE THESE METHODS TO WHATEVER IS NEEDED WHEN YOU KNOW!
 	public ArrayList getHistoryList() {
-		// lista tietokannasta
-		//stuff from database
-		return history;
+		ArrayList<Item> items = databaseReader.getItems();
+		ArrayList<String> temp = new ArrayList<>();
+		for (int i = 0; i < items.size(); i++) {
+			String name = items.get(i).getName();
+			Double amount = items.get(i).getAmount();
+			String transType = items.get(i).getTranstype();
+			temp.add(name + " " + amount + " " + transType);
+		}
+		this.history = temp;
+		return this.history;
 	}
 	
 	public void readPicture(File file) {
@@ -41,8 +49,7 @@ public class Backend {
 		
 	}
 
-	public void addCustomItem(LocalDate date, String name, Double amount) {
-		// TODO Auto-generated method stub
-		//stuff to database
+	public void addCustomItem(Item item) {
+		this.databaseReader.insertItem(item);
 	}
 }

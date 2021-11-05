@@ -28,8 +28,8 @@ import javafx.stage.Window;
 
 public class Controller {
 
-	private Backend backend;
-	private ObservableList<String> lista;
+	private Backend backend = Main.backend;
+	private ObservableList<String> lista = FXCollections.observableArrayList(backend.getHistoryList());
 
 	@FXML
 	private ListView<String> historyList = new ListView<String>(lista);
@@ -45,12 +45,15 @@ public class Controller {
 	private DatePicker endDate;
 
 	public Controller() {
-		backend = new Backend();
-		lista = FXCollections.observableArrayList(backend.getHistoryList());
 	}
 
 	public void initialize() {
+		//backend = Main.backend;
+		//System.out.println(backend.getHistoryList());
+		//lista = FXCollections.observableArrayList(backend.getHistoryList());
+		//historyList = new ListView<String>(lista);
 		System.out.println(backend);
+		System.out.println(this);
 		loadHistory();
 	}
 
@@ -109,7 +112,14 @@ public class Controller {
 		if (validDate && validName && validAmount) {
 			System.out.println("checks ok: ");
 			System.out.println(date + " " + name + " " + amount);
-			backend.addCustomItem(date, name, amount);
+			String transType = "";
+			if (amount < 0) {
+				transType = "Expense";
+			} else {
+				transType = "Income";
+			}
+			backend.addCustomItem(new Item(name, amount, transType));
+			//backend.addCustomItem(date, name, amount);
 		} else {
 			System.out.println("checks failed");
 		}
@@ -117,6 +127,7 @@ public class Controller {
 
 	// History
 	public void loadHistory() {
+		System.out.println(lista);
 		historyList.setItems(lista);
 		historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}

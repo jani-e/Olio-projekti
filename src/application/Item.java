@@ -3,10 +3,10 @@ package application;
 public class Item {
 
 private String name;
-private int amount;
+private double amount;
 private String transType;
 
-public Item(String name, int amount, String transType) {
+public Item(String name, double amount, String transType) {
 	this.name=name;
 	this.amount=amount;
 	this.transType=transType;
@@ -18,7 +18,7 @@ public Item(String name, int amount, String transType) {
 		return this.name;
 	}
 
-	public int getAmount() {
+	public double getAmount() {
 		
 		return this.amount;
 	}

@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 
 
 public class Main extends Application {
+	public static Backend backend;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -23,6 +24,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		backend = new Backend();
 		launch(args);
 	}
 	
