@@ -18,7 +18,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setTitle("Rahanseuranta");
 			stage.setScene(scene);
-			Controller controller = loader.getController();
+			ScanController controller = loader.getController();
 			controller.setStage(stage);
 			stage.show();
 		} catch(Exception e) {
