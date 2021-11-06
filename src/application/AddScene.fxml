@@ -15,7 +15,7 @@
       <DatePicker fx:id="valueDate" editable="false" layoutX="81.0" layoutY="190.0" prefHeight="25.0" prefWidth="200.0" promptText="Select Date" />
       <TextField fx:id="valueName" layoutX="80.0" layoutY="260.0" prefWidth="200.0" promptText="Name" />
       <TextField fx:id="valueAmount" layoutX="80.0" layoutY="330.0" prefWidth="200.0" promptText="€" />
-      <Button fx:id="addButton" layoutX="121.0" layoutY="400.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="120.0" text="Add item">
+      <Button fx:id="addButton" layoutX="121.0" layoutY="400.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" prefWidth="120.0" text="Add item">
          <font>
             <Font size="14.0" />
          </font></Button>

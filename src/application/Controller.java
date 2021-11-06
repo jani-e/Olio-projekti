@@ -28,8 +28,12 @@ import javafx.stage.Window;
 
 public class Controller {
 
+	private Stage stage;
+	private Scene scene;
+	private Parent root;
 	private Backend backend = Main.backend;
 	private ObservableList<String> lista = FXCollections.observableArrayList(backend.getHistoryList());
+	private Alert errorAlert;
 
 	@FXML
 	private ListView<String> historyList = new ListView<String>(lista);
@@ -46,67 +50,73 @@ public class Controller {
 
 	public Controller() {
 	}
-
+	
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	
 	public void initialize() {
 		//backend = Main.backend;
 		//System.out.println(backend.getHistoryList());
 		//lista = FXCollections.observableArrayList(backend.getHistoryList());
 		//historyList = new ListView<String>(lista);
-		System.out.println(backend);
-		System.out.println(this);
+		//System.out.println(backend);
+		//System.out.println(this);
+		this.errorAlert = new Alert(AlertType.ERROR);
 		loadHistory();
 	}
+	
+	
 
 	// Scan
-	public void scan(ActionEvent event) {
+	public void scanFile(ActionEvent event) {
 		Window window = ((Node) (event.getSource())).getScene().getWindow();
 		FileChooser fileChooser = new FileChooser();
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.tiff", "*.png", "*.bmp", "*.gif");
 		fileChooser.getExtensionFilters().add(extFilter);
 		File file = fileChooser.showOpenDialog(window);
 		event.consume();
-		backend.readPicture(file); //backend receives file
+		backend.readPicture(file);
 	}
 
 	// Add
-	public void add() {
-		Alert errorAlert = new Alert(AlertType.ERROR);
-		LocalDate date = LocalDate.of(2000, 1, 1);
-		String name = "";
-		Double amount = 0.0;
+	public void addItem() {
+		LocalDate date = valueDate.getValue();
+		String name = valueName.getText();
+		String tempAmount = valueAmount.getText();
+		Double amount = null;
 		
 		Boolean validDate = false;
 		Boolean validName = false;
 		Boolean validAmount = false;
 		
-		if (valueDate.getValue() == null) {
+		if (date == null) {
 			validDate = false;
-			errorAlert.setHeaderText("Date is missing!");
-			errorAlert.setContentText("Please select a date.");
-			errorAlert.showAndWait();
 		} else {
-			date = valueDate.getValue(); //returns year-month-day ex. 2021-11-01
 			validDate = true;
 		}
 		
-		if (valueName.getText().equals("")) {
+		if (name.equals("")) {
 			validName = false;
-			errorAlert.setHeaderText("Name is empty!");
-			errorAlert.setContentText("Please add a name.");
-			errorAlert.showAndWait();
 		} else {
-			name = valueName.getText();
 			validName = true;
 		}
 			
-		if (valueAmount.getText().equals("")) {//todo: allow numbers , . only 
+		if (tempAmount.contains(",")) {
+			String tempArray[] = tempAmount.split(",");
+			tempAmount = tempArray[0] + "." + tempArray[1];
+		}
+		
+		if (tempAmount.equals("")) {
 			validAmount = false;
-			errorAlert.setHeaderText("Amount error!");
-			errorAlert.setContentText("Valid input: 0.00");
-			errorAlert.showAndWait();
 		} else {
-			amount = Double.valueOf(valueAmount.getText());
-			validAmount = true;
+			try {
+				Double.parseDouble(tempAmount);
+				amount = Double.valueOf(tempAmount);
+				validAmount = true;
+			} catch (NumberFormatException e) {
+				validAmount = false;
+			}
 		}
 	
 		if (validDate && validName && validAmount) {
@@ -118,37 +128,72 @@ public class Controller {
 			} else {
 				transType = "Income";
 			}
-			backend.addCustomItem(new Item(name, amount, transType));
+			//backend.addCustomItem(new Item(name, amount, transType));
 			//backend.addCustomItem(date, name, amount);
 		} else {
+			errorPrompt(validDate, validName, validAmount);
 			System.out.println("checks failed");
 		}
+	}
+	public void errorPrompt(Boolean validDate, Boolean validName, Boolean validAmount) {
+		String errorMessage = "";
+		String errorDate = "Date is missing!\n";
+		String errorName = "Name is missing!\n";
+		String errorAmount = "Invalid amount input!";
+		
+		if (!validDate) {
+			errorMessage += errorDate;
+		}
+		if (!validName) {
+			errorMessage += errorName;
+		}
+		if (!validAmount) {
+			errorMessage += errorAmount;
+		}
+		
+		errorAlert.setHeaderText("Something went wrong:");
+		errorAlert.setContentText(errorMessage);
+		errorAlert.showAndWait();
 	}
 
 	// History
 	public void loadHistory() {
-		System.out.println(lista);
+		//System.out.println(lista);
 		historyList.setItems(lista);
 		historyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 	public void filter() {
-		LocalDate start = startDate.getValue(); //LocalDate.of(2000, 1, 1);
-		LocalDate end = endDate.getValue(); //LocalDate.of(2000, 1, 1);
+		LocalDate start = null;
+		LocalDate end = null;
+		start = startDate.getValue();
+		end = endDate.getValue();
 		
 		System.out.println(start + " " + end);
 	}
 
 	// Menu
-	public void switchToScan(ActionEvent event) throws IOException {
-		switchScene(event, 1);
+	public void switchToScan(ActionEvent event) {
+		try {
+			switchScene(event, 1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void switchToAdd(ActionEvent event) throws IOException {
-		switchScene(event, 2);
+	public void switchToAdd(ActionEvent event) {
+		try {
+			switchScene(event, 2);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void switchToHistory(ActionEvent event) throws IOException {
-		switchScene(event, 3);
+	public void switchToHistory(ActionEvent event) {
+		try {
+			switchScene(event, 3);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void switchScene(ActionEvent event, int sceneNumber) throws IOException {
@@ -167,11 +212,18 @@ public class Controller {
 			scenePath = "ScanScene.fxml";
 			break;
 		}
-		Parent viewParent = FXMLLoader.load(getClass().getResource(scenePath));
-		Scene viewScene = new Scene(viewParent);
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		window.setScene(viewScene);
-		window.show();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(scenePath));
+		root = loader.load();
+		
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		
+		Controller controller = loader.getController();
+		controller.setStage(stage);
+		stage.show();
 	}
+
+	
 
 }

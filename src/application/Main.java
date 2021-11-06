@@ -10,14 +10,17 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	public static Backend backend;
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage stage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("ScanScene.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("ScanScene.fxml"));
+			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle("Rahanseuranta");
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			stage.setTitle("Rahanseuranta");
+			stage.setScene(scene);
+			Controller controller = loader.getController();
+			controller.setStage(stage);
+			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
