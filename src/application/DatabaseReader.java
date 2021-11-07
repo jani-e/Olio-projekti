@@ -10,7 +10,7 @@ public class DatabaseReader {
 		jdbc = new SQLiteJDBC();
 	}
 
-	public void setupDatabase() {
+	public void setupDatabase() {	//luodaan alla olevat taulut
 		String komento = "DROP TABLE IF EXISTS CATEGORY;" + "CREATE TABLE CATEGORY "
 				+ "(CATEGORYID INTEGER PRIMARY KEY AUTOINCREMENT," + " NAME TEXT	NOT NULL)";
 		jdbc.createTable(komento);
@@ -27,7 +27,7 @@ public class DatabaseReader {
 //"DROP TABLE IF EXISTS ITEM;" + 
 	}
 
-	public void insertItem(Item item) {
+	public void insertItem(Item item) {		//Item luokkaan lisätään seuraavat ööö mitkä? Muuttujat? Virallinen nimitys?
 		String name = item.getName();
 		double amount = item.getAmount();
 		String transtype = item.getTranstype();

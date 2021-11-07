@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SQLiteJDBC {
-	public SQLiteJDBC() {
+	public SQLiteJDBC() {	//yhdistet‰‰n tietokantaan
 		Connection c = null;
 
 		try {
@@ -18,7 +18,7 @@ public class SQLiteJDBC {
 
 	}
 
-	public void createTable(String komento) {
+	public void createTable(String komento) {	//luodaan tietokantaan table/pˆyt‰
 		Connection c = null;
 		Statement stmt = null;
 
@@ -28,7 +28,7 @@ public class SQLiteJDBC {
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql = komento;
+			String sql = komento;	//komentoa kutsutaan luokassa DatabaseReader
 
 			stmt.executeUpdate(sql);
 			stmt.close();
@@ -40,7 +40,7 @@ public class SQLiteJDBC {
 		System.out.println("Table created successfully");
 	}
 
-	public void sqlQuery(String lisays) {
+	public void sqlQuery(String lisays) { 	//lis‰t‰‰n tietoja tableen
 		Connection c = null;
 		Statement stmt = null;
 
@@ -66,8 +66,8 @@ public class SQLiteJDBC {
 
 	public ArrayList<Item> selectQuery(String table, String query) {
 		if (table.contains(";") || query.contains(";")) {
-			return null;
-		}
+			return null;	//ei tehd‰ mit‰‰n, jos ;, jotta kukaan ei droppaa tablea
+		}						
 		// String table = "; DROP TABLE ITEM;";
 		Connection c = null;
 		Statement stmt = null;
