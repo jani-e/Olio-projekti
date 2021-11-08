@@ -58,6 +58,7 @@ public class HistoryController {
 
 			this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			this.scene = new Scene(root);
+			this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			this.stage.setScene(scene);
 
 			ScanController controller = loader.getController();
@@ -75,6 +76,7 @@ public class HistoryController {
 
 			this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			this.scene = new Scene(root);
+			this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			this.stage.setScene(scene);
 
 			AddController controller = loader.getController();
@@ -92,6 +94,7 @@ public class HistoryController {
 
 			this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			this.scene = new Scene(root);
+			this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			this.stage.setScene(scene);
 
 			HistoryController controller = loader.getController();
