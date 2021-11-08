@@ -7,19 +7,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Backend {
-	
+
 	private ReceiptMaker receiptMaker;
 	private DatabaseReader databaseReader;
-	private ArrayList<String> history; 
+	private ArrayList<String> history;
+
 	public Backend() {
 		this.receiptMaker = new ReceiptMaker();
 		this.databaseReader = new DatabaseReader();
-		//this.databaseReader.setupDatabase();
+		// this.databaseReader.setupDatabase();
 		this.history = new ArrayList<>();
-		
+
 	}
-	
-	//CHANGE THESE METHODS TO WHATEVER IS NEEDED WHEN YOU KNOW!
+
+	// haetaan historia tietokannasta
 	public ArrayList getHistoryList() {
 		ArrayList<Item> items = databaseReader.getItems();
 		ArrayList<String> temp = new ArrayList<>();
@@ -32,23 +33,20 @@ public class Backend {
 		this.history = temp;
 		return this.history;
 	}
-	
+
+	// luetaan kuva tiedostosta
 	public void readPicture(File file) {
 		try {
 			Scanner reader = new Scanner(file);
-		    while (reader.hasNextLine()) {
-		    	String data = reader.nextLine();
-		    	System.out.println(data);
-		    }
+			while (reader.hasNextLine()) {
+				String data = reader.nextLine();
+				System.out.println(data);
+			}
 		} catch (FileNotFoundException e) {
 			System.out.println(e);
 		}
 	}
-	
-	public void addCustomItem() {
-		
-	}
-
+	// ei-skannatun kulun lisääminen
 	public void addCustomItem(Item item) {
 		this.databaseReader.insertItem(item);
 	}
