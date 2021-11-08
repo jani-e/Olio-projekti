@@ -37,12 +37,12 @@ public class AddController {
 		this.stage = stage;
 	}
 
-	public void initialize() {
+	public void initialize() { //varoitus sekä ilmoitusikkunat
 		this.errorAlert = new Alert(AlertType.ERROR);
 		this.informationAlert = new Alert(AlertType.INFORMATION);
 	}
 
-	public void addItem() {
+	public void addItem() { //käy läpi käyttäjän syötteet
 		LocalDate date = valueDate.getValue();
 		String name = valueName.getText();
 		String tempAmount = valueAmount.getText();
@@ -90,7 +90,7 @@ public class AddController {
 			} else {
 				transType = "Income";
 			}
-			this.backend.addCustomItem(new Item(name, amount, transType)); //todo: add date
+			this.backend.addCustomItem(new Item(name, amount, transType)); //todo: add date vai poisto?
 			this.informationAlert.setHeaderText("Item added!");
 			this.informationAlert.setContentText("Date: " + date + "\nName: " + name + "\nAmount: " + amount);
 			this.informationAlert.showAndWait();
@@ -100,7 +100,7 @@ public class AddController {
 		}
 	}
 
-	public void errorPrompt(Boolean validDate, Boolean validName, Boolean validAmount) {
+	public void errorPrompt(Boolean validDate, Boolean validName, Boolean validAmount) { //näyttää käyttäjälle missä tiedoissa oli virheitä
 		String errorMessage = "";
 		String errorDate = "Date is missing!\n";
 		String errorName = "Name is missing!\n";

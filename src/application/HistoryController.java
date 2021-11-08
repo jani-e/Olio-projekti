@@ -22,26 +22,26 @@ public class HistoryController {
 	private Backend backend = Main.backend;
 	private ObservableList<String> lista;;
 
-	@FXML
+	@FXML //viittaukset FXML tiedoston osioihin
 	private ListView<String> historyList;
 	@FXML
 	private DatePicker startDate;
 	@FXML
 	private DatePicker endDate;
 
-	public HistoryController() {
+	public HistoryController() { //JavaFX:ss‰ konstruktio on tyhj‰
 	}
 
-	public void setStage(Stage stage) {
+	public void setStage(Stage stage) { //asetetaan edellinen stage
 		this.stage = stage;
 	}
 
-	public void initialize() {
+	public void initialize() { //komennot, jotka toteutetaan FXML latauksen j‰lkeen
 		lista = FXCollections.observableArrayList(backend.getHistoryList());
 		historyList.getItems().addAll(lista);
 	}
 
-	public void filter() {
+	public void filter() { //poisto? ylim‰‰r‰inen ominaisuus, jota ei k‰ytet‰
 		LocalDate start = null;
 		LocalDate end = null;
 		start = startDate.getValue();

@@ -33,7 +33,7 @@ public class ScanController {
 	}
 
 	// Scan
-	public void scanFile(ActionEvent event) {
+	public void scanFile(ActionEvent event) { //asettaa tiedoston latausikkunan ja v‰litt‰‰ tiedoston eteenp‰in
 		try {
 			Window window = ((Node) (event.getSource())).getScene().getWindow();
 			FileChooser fileChooser = new FileChooser();
@@ -52,7 +52,7 @@ public class ScanController {
 	}
 
 	// Menu
-	public void switchToScan(ActionEvent event) {
+	public void switchToScan(ActionEvent event) { //N‰kym‰n vaihto painikkeen mukaisesti
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("ScanScene.fxml"));
 			this.root = loader.load();

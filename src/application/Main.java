@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	public static Backend backend;
 	@Override
-	public void start(Stage stage) {
+	public void start(Stage stage) { //luodaan ensimm‰inen n‰kym‰ (stage)
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("ScanScene.fxml"));
 			Parent root = loader.load();
@@ -18,7 +18,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setTitle("Rahanseuranta");
 			stage.setScene(scene);
-			ScanController controller = loader.getController();
+			ScanController controller = loader.getController(); //haetaan controller, joka vied‰‰n n‰kym‰‰n mukaan
 			controller.setStage(stage);
 			stage.show();
 		} catch(Exception e) {
