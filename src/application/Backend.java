@@ -36,14 +36,9 @@ public class Backend {
 
 	// luetaan kuva tiedostosta
 	public void readPicture(File file) {
-		try {
-			Scanner reader = new Scanner(file);
-			while (reader.hasNextLine()) {
-				String data = reader.nextLine();
-				System.out.println(data);
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println(e);
+		ArrayList<Item> kuitti = this.receiptMaker.getReceipt(file);
+		for (Item item : kuitti) {
+			this.databaseReader.insertItem(item);
 		}
 	}
 	// ei-skannatun kulun lisääminen
