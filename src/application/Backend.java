@@ -17,7 +17,7 @@ public class Backend {
 		this.databaseReader = new DatabaseReader();
 		// this.databaseReader.setupDatabase();
 		this.history = new ArrayList<>();
-
+//joo
 	}
 
 	// haetaan historia tietokannasta
