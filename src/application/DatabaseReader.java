@@ -27,7 +27,7 @@ public class DatabaseReader {
 //"DROP TABLE IF EXISTS ITEM;" + 
 	}
 
-	public void insertItem(Item item) {		//Item luokkaan lisätään seuraavat ööö mitkä? Muuttujat? Virallinen nimitys?
+	public void insertItem(Item item) {		//Item luokkaan lisätään seuraavat kentät
 		String name = item.getName();
 		double amount = item.getAmount();
 		String transtype = item.getTranstype();
