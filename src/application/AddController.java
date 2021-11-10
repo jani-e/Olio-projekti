@@ -1,24 +1,15 @@
 package application;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-public class AddController {
+public class AddController extends MenuController {
 
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
 	private Backend backend = Main.backend;
 	private Alert errorAlert;
 	private Alert informationAlert;
@@ -33,22 +24,18 @@ public class AddController {
 	public AddController() {
 	}
 
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
-
-	public void initialize() { //varoitus sekä ilmoitusikkunat
+	public void initialize() { //error and information window pop ups
 		this.errorAlert = new Alert(AlertType.ERROR);
 		this.informationAlert = new Alert(AlertType.INFORMATION);
 	}
 
-	public void addItem() { //käy läpi käyttäjän syötteet
+	public void addItem() { //sets user inputs to values
 		LocalDate date = valueDate.getValue();
 		String name = valueName.getText();
 		String tempAmount = valueAmount.getText();
 		Double amount = null;
 
-		Boolean validDate = false;
+		Boolean validDate = false; //validation
 		Boolean validName = false;
 		Boolean validAmount = false;
 
@@ -64,7 +51,7 @@ public class AddController {
 			validName = true;
 		}
 
-		if (tempAmount.contains(",")) {
+		if (tempAmount.contains(",")) { //turn commas into dots
 			String tempArray[] = tempAmount.split(",");
 			tempAmount = tempArray[0] + "." + tempArray[1];
 		}
@@ -72,7 +59,7 @@ public class AddController {
 		if (tempAmount.equals("")) {
 			validAmount = false;
 		} else {
-			try {
+			try { //if legit double value, continue
 				Double.parseDouble(tempAmount);
 				amount = Double.valueOf(tempAmount);
 				validAmount = true;
@@ -81,26 +68,24 @@ public class AddController {
 			}
 		}
 
-		if (validDate && validName && validAmount) {
-			System.out.println("checks ok: ");
-			System.out.println(date + " " + name + " " + amount);
+		if (validDate && validName && validAmount) { //if all checks are true, continue
 			String transType = "";
-			if (amount < 0) {
+			if (amount < 0) { //transaction type based on value
 				transType = "Expense";
 			} else {
 				transType = "Income";
 			}
-			this.backend.addCustomItem(new Item(name, amount, transType)); //todo: add date vai poisto?
-			this.informationAlert.setHeaderText("Item added!");
+			this.backend.addCustomItem(new Item(name, amount, transType)); //add item to backend
+			this.informationAlert.setHeaderText("Item added!"); //info pop up
 			this.informationAlert.setContentText("Date: " + date + "\nName: " + name + "\nAmount: " + amount);
 			this.informationAlert.showAndWait();
 		} else {
-			errorPrompt(validDate, validName, validAmount);
+			errorPrompt(validDate, validName, validAmount); //calls method to show user input errors
 			System.out.println("checks failed");
 		}
 	}
 
-	public void errorPrompt(Boolean validDate, Boolean validName, Boolean validAmount) { //näyttää käyttäjälle missä tiedoissa oli virheitä
+	public void errorPrompt(Boolean validDate, Boolean validName, Boolean validAmount) { //shows to user what went wrong
 		String errorMessage = "";
 		String errorDate = "Date is missing!\n";
 		String errorName = "Name is missing!\n";
@@ -122,58 +107,16 @@ public class AddController {
 	}
 
 	// Menu
-	public void switchToScan(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("ScanScene.fxml"));
-			this.root = loader.load();
-
-			this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			this.scene = new Scene(root);
-			this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			this.stage.setScene(scene);
-
-			ScanController controller = loader.getController();
-			controller.setStage(stage);
-			this.stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+		public void switchToScan(ActionEvent event) {
+			super.switchToScan(event);
 		}
-	}
 
-	public void switchToAdd(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("AddScene.fxml"));
-			this.root = loader.load();
-
-			this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			this.scene = new Scene(root);
-			this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			this.stage.setScene(scene);
-
-			AddController controller = loader.getController();
-			controller.setStage(stage);
-			this.stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+		public void switchToAdd(ActionEvent event) {
+			super.switchToAdd(event);
 		}
-	}
 
-	public void switchToHistory(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("HistoryScene.fxml"));
-			this.root = loader.load();
-
-			this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			this.scene = new Scene(root);
-			this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			this.stage.setScene(scene);
-
-			HistoryController controller = loader.getController();
-			controller.setStage(stage);
-			this.stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+		public void switchToHistory(ActionEvent event) {
+			super.switchToHistory(event);
 		}
-	}
 
-}
+	}
