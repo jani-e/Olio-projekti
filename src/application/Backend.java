@@ -25,7 +25,7 @@ public class Backend {
 		}
 		// this.databaseReader.setupDatabase();
 		this.history = new ArrayList<>();
-//joo
+
 	}
 
 	// haetaan historia tietokannasta
