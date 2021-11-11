@@ -37,10 +37,10 @@ public class DatabaseReader {
 	}
 
 	public ArrayList<Item> getItems() {
-		ArrayList<Item> resultItems = new ArrayList<>();	//uusi items arraylist
-		resultItems = jdbc.selectQuery("ITEM", "*");	//queryn nimi on item, 2. parametri on *
-		//items arraylistaan astetaan mitä löydetty metodilla
-
+		ArrayList<Item> resultItems = new ArrayList<>();	//create new Arraylist items
+		resultItems = jdbc.selectQuery("ITEM", "*");	//querys parameter is item, and 2. parameter is *
+		//items to the arraylist are set what is found by the method
+	
 		return resultItems;
 	}
 

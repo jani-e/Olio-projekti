@@ -20,14 +20,14 @@ public class SQLiteJDBC {
 
 	public void createTable(String command) {	//creating a table
 		Connection c = null;
-		Statement stmt = null;
+		Statement stmt = null;	//Creates a Statement object for sending SQL statements to the database
 
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:test.db");	
 			System.out.println("Opened database successfully");
 
-			stmt = c.createStatement();
+			stmt = c.createStatement();	
 			String sql = command;	//the command is called in the class DatabaseReader 
 
 			stmt.executeUpdate(sql);
@@ -72,7 +72,7 @@ public class SQLiteJDBC {
 		Connection c = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Item> items = new ArrayList<>();	//tilap‰inen arraylist, sis‰lt‰‰ item olioita
+		ArrayList<Item> items = new ArrayList<>();	//temporary arraylist, includes item objects
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:test.db");
@@ -80,15 +80,15 @@ public class SQLiteJDBC {
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			rs = stmt.executeQuery("SELECT " + query + "FROM " + table + ";");	//rs= hakutulokset
+			rs = stmt.executeQuery("SELECT " + query + "FROM " + table + ";");	//rs= search results
 
 			
-			while (rs.next()) { 	//rs sis‰lt‰‰ kaiken mit‰ lˆyt‰‰ komennolla
+			while (rs.next()) { 	//rs contains everything what it founds with the command 
 				String name = rs.getString("NAME");
 				double amount = rs.getDouble("AMOUNT");
 				String transType = rs.getString("TRANS_TYPE");
-				Item item = new Item(name, amount, transType);	//tekee uuden itemin
-				items.add(item);								//lis‰‰ itemit arraylistaan
+				Item item = new Item(name, amount, transType);	//creates new itemin
+				items.add(item);								//adds items to the arraylist
 			}
 			
 			rs.close();
@@ -100,6 +100,6 @@ public class SQLiteJDBC {
 		}
 		System.out.println("Operation done successfully");
 		
-		return items;		//palauttaa items arraylistan
+		return items;		//returns arraylist items
 	}
 }
