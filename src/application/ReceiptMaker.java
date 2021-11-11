@@ -18,6 +18,7 @@ public class ReceiptMaker {
 	}
 
 	public ArrayList<Item> getReceipt(File file) {
+		String euro = "\u20AC";
 		ITesseract instance = new Tesseract();
 		
 		instance.setDatapath("src/tessdata");
@@ -32,10 +33,10 @@ public class ReceiptMaker {
 			String[] myarray = result.split("\n");
 
 			while (i < myarray.length) {
-				if (myarray[i].contains("YHTEENSÄ")) {
+				if (myarray[i].contains("YHTEENS")) {
 					break;
 				} else {
-					if (!myarray[i].contains("€")) {
+					if (!myarray[i].contains(euro)) {
 						
 						//erotetaan tuotteen nimi
 						String separator = " ";
@@ -44,8 +45,8 @@ public class ReceiptMaker {
 						
 						String y = "";
 						
-						//haetaan vain rivin viimeinen desimaali, muutetaan siitä pilkku pisteeksi
-						//ja tulostetaan pelkkä liukuluku
+						//haetaan vain rivin viimeinen desimaali, muutetaan siitï¿½ pilkku pisteeksi
+						//ja tulostetaan pelkkï¿½ liukuluku
 						String toReplace = ",";
 						String replacement = ".";
 						int start = myarray[i].lastIndexOf(toReplace);

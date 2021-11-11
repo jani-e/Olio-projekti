@@ -15,6 +15,14 @@ public class Backend {
 	public Backend() {
 		this.receiptMaker = new ReceiptMaker();
 		this.databaseReader = new DatabaseReader();
+		File file = new File("test.db");  // Testing if the database file is empty
+		if (file.length() == 0) {
+			this.databaseReader.setupDatabase(); // setting up database if the file is empty
+			System.out.println("setting up database");
+		}
+		else {
+			System.out.println("Database ok");
+		}
 		// this.databaseReader.setupDatabase();
 		this.history = new ArrayList<>();
 //joo
