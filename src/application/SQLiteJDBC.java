@@ -8,8 +8,8 @@ public class SQLiteJDBC {
 		Connection c = null;
 
 		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			Class.forName("org.sqlite.JDBC");	//load or register the JDBC driver for the database. Class class provides forName() method to dynamically load the driver class.
+			c = DriverManager.getConnection("jdbc:sqlite:test.db"); //open a database connection
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
@@ -18,21 +18,21 @@ public class SQLiteJDBC {
 
 	}
 
-	public void createTable(String komento) {	//create table
+	public void createTable(String komento) {	//creating a table
 		Connection c = null;
 		Statement stmt = null;
 
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection("jdbc:sqlite:test.db");	
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql = komento;	//komentoa kutsutaan luokassa DatabaseReader
+			String sql = komento;	//the command is called in the class DatabaseReader 
 
 			stmt.executeUpdate(sql);
 			stmt.close();
-			c.close();
+			c.close();	//Close database connection
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
@@ -40,7 +40,7 @@ public class SQLiteJDBC {
 		System.out.println("Table created successfully");
 	}
 
-	public void sqlQuery(String lisays) { 	//lis‰t‰‰n tietoja tableen
+	public void sqlQuery(String lisays) { 	//adding data to the table
 		Connection c = null;
 		Statement stmt = null;
 
@@ -66,7 +66,7 @@ public class SQLiteJDBC {
 
 	public ArrayList<Item> selectQuery(String table, String query) {
 		if (table.contains(";") || query.contains(";")) {
-			return null;	//ei tehd‰ mit‰‰n, jos ;, jotta kukaan ei droppaa tablea
+			return null;	//do nothing if there is a ";" so that no one drops the table
 		}						
 		// String table = "; DROP TABLE ITEM;";
 		Connection c = null;

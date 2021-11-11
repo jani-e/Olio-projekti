@@ -10,7 +10,7 @@ public class DatabaseReader {
 		jdbc = new SQLiteJDBC();
 	}
 
-	public void setupDatabase() {	//luodaan alla olevat taulut
+	public void setupDatabase() {	//create the tables shown below
 		String komento = "DROP TABLE IF EXISTS CATEGORY;" + "CREATE TABLE CATEGORY "
 				+ "(CATEGORYID INTEGER PRIMARY KEY AUTOINCREMENT," + " NAME TEXT	NOT NULL)";
 		jdbc.createTable(komento);
@@ -24,10 +24,10 @@ public class DatabaseReader {
 				+ " CATEGORYID	INT , " + " RECEIPTID		INT , " + " FOREIGN KEY(CategoryID) "
 				+ " REFERENCES Category(CategoryID), " + " FOREIGN KEY(ReceiptID) " + "REFERENCES Receipt(ReceiptID))";
 		jdbc.createTable(komento);
-//"DROP TABLE IF EXISTS ITEM;" + 
+//"DROP TABLE IF EXISTS ITEM;" + 	//miksi tää on heitetty tänne? Eikö pitäisi olla ennen item taulua?
 	}
 
-	public void insertItem(Item item) {		//Item luokkaan lisätään seuraavat kentät
+	public void insertItem(Item item) {		//The following fields are added to the Item class
 		String name = item.getName();
 		double amount = item.getAmount();
 		String transtype = item.getTranstype();

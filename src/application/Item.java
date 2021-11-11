@@ -2,29 +2,29 @@ package application;
 
 public class Item {
 
-private String name; 	//luodaan oliomuuttujat
+private String name; 	//creating object variables
 private double amount;
 private String transType;
 
-public Item(String name, double amount, String transType) { 	//parametrillinen konstruktori
+public Item(String name, double amount, String transType) { 	//parametric constructor
 	this.name=name;
 	this.amount=amount;
 	this.transType=transType;
 }
 
 
-	public String getName() {	//haetaan ja palautetaan nimi julkisella metodilla
+	public String getName() {	//getting and returning the name using the public method
 	
 		return this.name;
 	}
 
-	public double getAmount() {		//haetaan ja palautetaan summa julkisella metodilla
+	public double getAmount() {		//getting and returning the amount using the public method
 		
 		return this.amount;
 	}
 
 
-	public String getTranstype() {		//haetaan ja palautetaan trantype (meno vai pano) julkisella metodilla
+	public String getTranstype() {		//getting and returning the transtype (income or expense) using the public method
 		
 		return this.transType;
 	}
