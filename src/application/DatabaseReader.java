@@ -7,41 +7,41 @@ public class DatabaseReader {
 	private SQLiteJDBC jdbc;
 
 	public DatabaseReader() {
-		jdbc = new SQLiteJDBC();
+		jdbc = new SQLiteJDBC();	//reference to sqlite class
 	}
 
 	public void setupDatabase() {	//create the tables shown below
-		String komento = "DROP TABLE IF EXISTS CATEGORY;" + "CREATE TABLE CATEGORY "
+		String command = "DROP TABLE IF EXISTS CATEGORY;" + "CREATE TABLE CATEGORY "	//this table is not in use, it's reserved for further development
 				+ "(CATEGORYID INTEGER PRIMARY KEY AUTOINCREMENT," + " NAME TEXT	NOT NULL)";
-		jdbc.createTable(komento);
+		jdbc.createTable(command);
 
-		komento = "DROP TABLE IF EXISTS RECEIPT;" + "CREATE TABLE RECEIPT "
+		command = "DROP TABLE IF EXISTS RECEIPT;" + "CREATE TABLE RECEIPT "	//this table is not in use, it's reserved for further development
 				+ "(RECEIPTID INTEGER PRIMARY KEY AUTOINCREMENT," + "RECEIPT_DATE DATE NOT NULL," + "RECEIPT_TIME)";
-		jdbc.createTable(komento);
+		jdbc.createTable(command);
 
-		komento = "CREATE TABLE ITEM " + "(ITEMID INTEGER PRIMARY KEY AUTOINCREMENT,"
+		command = "CREATE TABLE ITEM " + "(ITEMID INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ " NAME TEXT		NOT NULL," + " AMOUNT	DOUBLE    NOT NULL, " + " TRANS_TYPE	TEXT     NOT NULL, "
 				+ " CATEGORYID	INT , " + " RECEIPTID		INT , " + " FOREIGN KEY(CategoryID) "
 				+ " REFERENCES Category(CategoryID), " + " FOREIGN KEY(ReceiptID) " + "REFERENCES Receipt(ReceiptID))";
-		jdbc.createTable(komento);
-//"DROP TABLE IF EXISTS ITEM;" + 	//miksi tää on heitetty tänne? Eikö pitäisi olla ennen item taulua?
+		jdbc.createTable(command);
+
 	}
 
 	public void insertItem(Item item) {		//The following fields are added to the Item class
 		String name = item.getName();
 		double amount = item.getAmount();
 		String transtype = item.getTranstype();
-		String lisays = "INSERT INTO ITEM (NAME,AMOUNT,TRANS_TYPE) " + "VALUES ('" + name + "', " + amount + ", '"
+		String addData = "INSERT INTO ITEM (NAME,AMOUNT,TRANS_TYPE) " + "VALUES ('" + name + "', " + amount + ", '"
 				+ transtype + "')";
-		jdbc.sqlQuery(lisays);
+		jdbc.sqlQuery(addData);
 	}
 
 	public ArrayList<Item> getItems() {
-		ArrayList<Item> items = new ArrayList<>();
-		items = jdbc.selectQuery("ITEM", "*");
-		
+		ArrayList<Item> resultItems = new ArrayList<>();	//uusi items arraylist
+		resultItems = jdbc.selectQuery("ITEM", "*");	//queryn nimi on item, 2. parametri on *
+		//items arraylistaan astetaan mitä löydetty metodilla
 
-		return items;
+		return resultItems;
 	}
 
 }

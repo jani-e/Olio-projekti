@@ -18,7 +18,7 @@ public class SQLiteJDBC {
 
 	}
 
-	public void createTable(String komento) {	//creating a table
+	public void createTable(String command) {	//creating a table
 		Connection c = null;
 		Statement stmt = null;
 
@@ -28,7 +28,7 @@ public class SQLiteJDBC {
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql = komento;	//the command is called in the class DatabaseReader 
+			String sql = command;	//the command is called in the class DatabaseReader 
 
 			stmt.executeUpdate(sql);
 			stmt.close();
@@ -40,7 +40,7 @@ public class SQLiteJDBC {
 		System.out.println("Table created successfully");
 	}
 
-	public void sqlQuery(String lisays) { 	//adding data to the table
+	public void sqlQuery(String addData) { 	//adding data to the table from databasereader
 		Connection c = null;
 		Statement stmt = null;
 
@@ -51,7 +51,7 @@ public class SQLiteJDBC {
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql = lisays;
+			String sql = addData;
 			stmt.executeUpdate(sql);
 
 			stmt.close();
@@ -72,7 +72,7 @@ public class SQLiteJDBC {
 		Connection c = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Item> items = new ArrayList<>();
+		ArrayList<Item> items = new ArrayList<>();	//tilap‰inen arraylist, sis‰lt‰‰ item olioita
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:test.db");
@@ -80,15 +80,15 @@ public class SQLiteJDBC {
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			rs = stmt.executeQuery("SELECT " + query + "FROM " + table + ";");
+			rs = stmt.executeQuery("SELECT " + query + "FROM " + table + ";");	//rs= hakutulokset
 
 			
-			while (rs.next()) {
+			while (rs.next()) { 	//rs sis‰lt‰‰ kaiken mit‰ lˆyt‰‰ komennolla
 				String name = rs.getString("NAME");
 				double amount = rs.getDouble("AMOUNT");
 				String transType = rs.getString("TRANS_TYPE");
-				Item item = new Item(name, amount, transType);
-				items.add(item);
+				Item item = new Item(name, amount, transType);	//tekee uuden itemin
+				items.add(item);								//lis‰‰ itemit arraylistaan
 			}
 			
 			rs.close();
@@ -100,6 +100,6 @@ public class SQLiteJDBC {
 		}
 		System.out.println("Operation done successfully");
 		
-		return items;
+		return items;		//palauttaa items arraylistan
 	}
 }

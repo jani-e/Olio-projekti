@@ -29,7 +29,7 @@ public class Backend {
 	}
 
 	// haetaan historia tietokannasta
-	public ArrayList getHistoryList() {
+	public ArrayList<String> getHistoryList() {
 		ArrayList<Item> items = databaseReader.getItems();
 		ArrayList<String> temp = new ArrayList<>();
 		for (int i = 0; i < items.size(); i++) {
