@@ -25,7 +25,7 @@ public class ReceiptMaker {
 		instance.setLanguage("fin");
 
 		ArrayList<Item> kuitti = new ArrayList<>(); //temporary array for the OCR scan
-		int i = 7; //relevant information on the example receipt starts on row 8. further development would require tailored specs to be assigned according to the shop/store 
+		int i = 7; //relevant information on the example receipt starts on row 7. further development would require tailored specs to be assigned according to the shop/store 
 		String result;
 
 		try {
